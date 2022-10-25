@@ -1,0 +1,32 @@
+_schema-version: "3.1"
+ID: young
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: young-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: young-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+- name: young-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: young-db
+
+resources:
+- name: young-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name} # geht auch mit young-db
