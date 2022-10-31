@@ -21,7 +21,45 @@ modules:
   path: gen/db
   requires:
   - name: young-db
-
+    properties:
+      TARGET_CONTAINER: ~{hdi-service-name}
+  - name: cross-container-service-1
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_1
+      service: ~{the-service-name}
+  - name: cross-container-service-2
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_2
+      service: ~{the-service-name}
+  - name: cross-container-service-3
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_3
+      service: ~{the-service-name}
+  - name: cross-container-service-4
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_4
+      service: ~{the-service-name}
+  - name: cross-container-service-5
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_5
+      service: ~{the-service-name}
+- name: user_db
+  type: hdb
+  path: user_db
+  requires:
+  - name: young-user-db
+  - name: cross-container-service-6
+    group: SERVICE_REPLACEMENTS
+    properties:
+      key: ServiceName_1
+      service: ~{the-service-name}
+  parameters:
+    app-name: young-user-db
 resources:
 - name: young-db
   type: com.sap.xs.hdi-container
@@ -29,4 +67,40 @@ resources:
     service: hana
     service-plan: hdi-shared
   properties:
-    hdi-service-name: ${service-name} # geht auch mit young-db
+    hdi-service-name: ${service-name}
+- name: cross-container-service-1
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: CC_ACCESS
+  properties:
+    the-service-name: ${service-name}
+- name: cross-container-service-2
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: CC_ACCESS_FLIGHT
+  properties:
+    the-service-name: ${service-name}
+- name: cross-container-service-3
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: CC_ACCESS_FLIGHT2
+  properties:
+    the-service-name: ${service-name}
+- name: cross-container-service-4
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: CC_ACCESS_FLIGHT3
+  properties:
+    the-service-name: ${service-name}
+- name: cross-container-service-5
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: CC_ACCESS_FLIGHT4
+  properties:
+    the-service-name: ${service-name}
+- name: cross-container-service-6
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: young-user-db
+  properties:
+    the-service-name: ${service-name}
