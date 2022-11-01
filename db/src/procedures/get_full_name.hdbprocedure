@@ -1,0 +1,9 @@
+PROCEDURE "get_full_name" (
+    IN im_firstname NVARCHAR(40),
+    OUT ex_fullname NVARCHAR(256)
+)
+
+AS BEGIN
+ex_fullname = :im_firstname;
+END;
+

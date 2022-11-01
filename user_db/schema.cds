@@ -9,7 +9,8 @@ entity![User] : cuid {
 }
 
 annotate![User] with @(
- []
+    title       : '{i18n>userService}',
+    description : '{i18n>userService}'
 ) {
     ID          @(
         title       : '{i18n>user_id}',

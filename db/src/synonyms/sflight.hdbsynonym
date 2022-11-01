@@ -1,0 +1,25 @@
+{
+  "TICKET": {
+    "target": {
+      "object": "STICKET",
+      "schema": "SFLIGHT"
+    }
+  },
+  "AIRPORT": {
+    "target": {
+      "object": "SAIRPORT",
+      "schema": "SFLIGHT"
+    }
+  },
+  "TEST": {
+    "target": {
+      "object": "LOCALIZED_YOUNG_MD_PRODUCTIMAGES"
+    }
+  },
+  "PFLI": {
+    "target": {
+      "object": "SPFLI",
+      "schema": "SFLIGHT"
+    }
+  }
+}
